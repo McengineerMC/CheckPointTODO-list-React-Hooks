@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useState} from 'react';
+import Formtask from "./components/Formtask";
+import Listtask from './components/Listtask';
 import './App.css';
 
+
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const [inputvalue, setinputvalue] = useState("");  
+  function setinput(el){
+       setinputvalue(el);
+      }
+  const [tabtask, settabtask] = useState([]);
+  function addvalue(text){
+    const newtab=[...tabtask,text];
+    settabtask(newtab);  
+}
+    function addtab(array){  
+      settabtask(array);
+  }
+  return(
+ <div className="App">
+   <h1>Todo List</h1>
+   <Formtask addvalue={addvalue} inputvalue={inputvalue} setinput={setinput} />
+   <Listtask tabtask={tabtask} addtab={addtab} setinput={setinput}/>
+ </div>
   );
 }
 
